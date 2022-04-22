@@ -8,9 +8,9 @@ This is a simple project
 
 - Open project folder
 
-- Create database same with .env database name
-
 - Copy .env file
+
+- Create database same with .env database name
 
 - php artisan migrate
 
