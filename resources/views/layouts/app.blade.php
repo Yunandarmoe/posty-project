@@ -7,17 +7,20 @@
   <title>Posty Project</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-slate-300">
-  <nav class="p-5 bg-white flex justify-between">
+<body class="bg-white">
+  <nav class="p-5 bg-blue-400 flex justify-between">
     <ul class="flex justify-between items-center">
       <li class="p-3">
         <a href="">Home</a>
+      </li>
+      <li class="p-3">
+        <a href="">Username</a>
       </li>
     </ul>
 
     <ul class="flex justify-between items-center">
       <li class="p-3">
-        <a href="">Username</a>
+        <a href="{{ route('register') }}">Register</a>
       </li>
       <li class="p-3">
         <a href="">Login</a>
