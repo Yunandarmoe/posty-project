@@ -32,6 +32,6 @@ class RegisterController extends Controller
 
         auth()->attempt($request->only('email', 'password'));
 
-        return redirect()->route('logout');
+        return redirect()->route('login');
     }
 }

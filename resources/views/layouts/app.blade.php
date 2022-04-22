@@ -14,7 +14,7 @@
     <ul class="flex justify-between items-center">
       <li class="p-3">
         <a href="">Home</a>
-      </li>
+    </li>
       <li class="p-3">
         <a href="{{ route('dashboard') }}">Dashboard</a>
       </li>
@@ -26,7 +26,10 @@
           <p>{{ auth()->user()->name }}</p>
         </li>
         <li class="p-3">
-          <a href="{{ route('logout') }}">Logout</a>
+          <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type="submit">Logout</button>
+          </form>
         </li>
       @endauth
 
