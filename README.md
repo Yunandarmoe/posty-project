@@ -14,6 +14,10 @@ This is a simple project
 
 - php artisan migrate
 
+- Install tailwind css 
+  - npm install -D tailwindcss
+  - npx tailwindcss init
+
 ## Finally run
 
 - php artisan serve
