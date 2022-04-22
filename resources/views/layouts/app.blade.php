@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <title>Posty Project</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body class="bg-white">
   <nav class="p-5 bg-blue-400 flex justify-between">
     <ul class="flex justify-between items-center">
@@ -14,23 +16,33 @@
         <a href="">Home</a>
       </li>
       <li class="p-3">
-        <a href="">Username</a>
+        <a href="{{ route('dashboard') }}">Dashboard</a>
       </li>
     </ul>
 
     <ul class="flex justify-between items-center">
-      <li class="p-3">
-        <a href="{{ route('register') }}">Register</a>
-      </li>
-      <li class="p-3">
-        <a href="">Login</a>
-      </li>
-      <li class="p-3">
-        <a href="">Logout</a>
-      </li>
+      @auth 
+        <li class="p-3">
+          <p>{{ auth()->user()->name }}</p>
+        </li>
+        <li class="p-3">
+          <a href="{{ route('logout') }}">Logout</a>
+        </li>
+      @endauth
+
+      @guest 
+        <li class="p-3">
+          <a href="{{ route('register') }}">Register</a>
+        </li>
+        <li class="p-3">
+          <a href="{{ route('login') }}">Login</a>
+        </li>
+      @endguest
+
     </ul>
   </nav>
 
   @yield('content')
 </body>
+
 </html>
