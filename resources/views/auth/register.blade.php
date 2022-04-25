@@ -3,7 +3,7 @@
 @section('content')
 <div class="flex justify-center">
   <div class="w-4/12 p-5 mt-5 bg-blue-300 rounded-md">
-    <form action="{{ route('register') }}" method="post" class="mt-5">
+    <form action="{{ route('register.store') }}" enctype="multipart/form-data" method="post" class="mt-5">
       @csrf
       <div class="mb-4">
         <label for="name" class="sr-only">Name</label>
@@ -40,10 +40,15 @@
         <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm your password" class="bg-gray-100 border-2 w-full p-3 rounded-md">
       </div>
 
+      <div class="input-group mb-4">
+        <input type="file" name="image" multiple class="form-control" aria-label="Upload">
+      </div>
+
       <div>
         <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded front-medium w-full">Register</button>
       </div>
     </form>
+
   </div>
 </div>
 

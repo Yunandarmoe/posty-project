@@ -5,7 +5,6 @@
   <div class="w-4/12 p-5 mt-5 bg-blue-300 rounded-md">
     <form action="{{ route('login') }}" method="post">
       @csrf
-
       <div class="mb-4">
         <label for="email" class="sr-only">Email</label>
         <input type="email" name="email" id="email" placeholder="Your email" class="bg-gray-100 border-2 w-full p-3 rounded-md @error('email') border-red-500 @enderror" value="{{ old('email') }}">
@@ -32,5 +31,6 @@
     </form>
   </div>
 </div>
+
 
 @endsection
