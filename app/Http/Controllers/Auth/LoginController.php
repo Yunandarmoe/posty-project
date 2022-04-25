@@ -21,6 +21,6 @@ class LoginController extends Controller
     {           
         auth()->attempt($request->only('email', 'password'));       
         
-        return view('home'); 
+        return redirect('/'); 
     }
 }
