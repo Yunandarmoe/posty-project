@@ -14,9 +14,6 @@
     <ul class="flex justify-between items-center">
       <li class="p-3">
         <a href="">Home</a>
-    </li>
-      <li class="p-3">
-        <a href="{{ route('dashboard') }}">Dashboard</a>
       </li>
     </ul>
 

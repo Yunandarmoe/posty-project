@@ -12,17 +12,24 @@ class StorePostRequest extends FormRequest
      *
      * @return bool
      */
+
+    public function authorize()
+    {
+        return true;
+    }
+    
     public function rules()
     {
         return [
             'name' => 'required|max:255',
             'username' => 'required|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email',
             'password' => 'required',
+            'image' => 'required',
         ];
     }
 
-    /**
+    /** 
      * Custom message for validation
      *
      * @return array
@@ -30,10 +37,11 @@ class StorePostRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Email is required!',
-            'name.required' => 'Name is required!',
-            'username.required' => 'Username is required!',
-            'password.required' => 'Password is required!'
+            'email.required' => 'The email is required!',
+            'name.required' => 'The name is required!',
+            'username.required' => 'The username is required!',
+            'password.required' => 'The password is required!',
+            'image.required' => 'The image is required!',
         ];
-    }
+    }    
 }

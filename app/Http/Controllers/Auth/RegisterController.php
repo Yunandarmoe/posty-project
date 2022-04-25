@@ -7,20 +7,46 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StorePostRequest;
-
+use App\Models\Gallery;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        return view('auth.register');
+
+        $this->middleware(['guest']);
     }
 
-    public function store(StorePostRequest $request)
+    public function index()
     {
-        // Will return only validated data
+        $galleries = Gallery::all();
+        return view('auth.register', compact('galleries'));
+    }
 
-        $validated = $request->validated();
+    public function store(Request $request)
+    {
+
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $image) {
+                $filename = time() . '_' . $image->getClientOriginalName();
+                $image->storeAs('upload', $filename);
+
+                $gallery = new Gallery();
+                $gallery->name = $filename;
+                $gallery->save();
+            }
+            return back();
+        }
+
+        //$validated = $request->validated();
+
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'username' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|confirmed',
+        ]);
 
         User::create([
             'name' => $request->name,
@@ -29,8 +55,23 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        auth()->attempt($request->only('email', 'password'));
-
         return redirect()->route('login');
+
+        auth()->attempt($request->only('email', 'password'));
+    }
+
+    public function destroy($id)
+    {
+        $gallery = Gallery::findOrFail($id);
+        Storage::delete('upload/' . $gallery->name);
+        $gallery->delete();
+
+        return back();
+    }
+
+    public function download($id)
+    {
+        $gallery = Gallery::findOrFail($id);
+        return Storage::download('upload/' . $gallery->name);
     }
 }

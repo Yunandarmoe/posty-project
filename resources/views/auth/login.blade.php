@@ -18,7 +18,7 @@
 
       <div class="mb-4">
         <label for="password" class="sr-only">Password</label>
-        <input type="password" name="password" id="name" placeholder="Your password" class="bg-gray-100 border-2 w-full p-3 rounded-md @error('password') border-red-500 @enderror">
+        <input type="password" name="password" id="name" placeholder="Your password" class="bg-gray-100 border-2 w-full p-3 rounded-md @error('password') border-red-500 @enderror" >
         @error('password')
           <div class="text-red-500 mt-2 text-sm">
             {{ ($message) }}
