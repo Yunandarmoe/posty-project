@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterStoreRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
-use App\Models\Image;
 
 class RegisterController extends Controller
 {
@@ -19,26 +17,24 @@ class RegisterController extends Controller
 
     public function index()
     {
-        $images = Image::all();
-        return view('auth.register', compact('images'));
+        return view('auth.register');
     }
 
     public function store(RegisterStoreRequest $request)
     {
+        if(request()->has('image')){
+            $imageuploaded = request()->file('image');
+            $imagename = time() . '_' . $imageuploaded->getClientOriginalName();
+            $imagepath = public_path('/upload/image/');
+            $imageuploaded->move($imagepath, $imagename);
+       }
+       
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'image' => '/upload/image/' . $imagename,
         ]);
-
-        if ($request->hasFile('image')) {
-            $filename = time() . '_' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('upload', $filename);
-
-            $image = new Image();
-            $image->name = $filename;
-            $image->save();
-        }
         return redirect()->route('login');
     }
 }

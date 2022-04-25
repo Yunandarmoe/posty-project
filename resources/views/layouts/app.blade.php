@@ -15,15 +15,12 @@
       <li class="p-3">
         <a href="">Home</a>
       </li>
-
     </ul>
 
     <ul class="flex justify-between items-center">
       @auth
       <li>
-        @foreach ($images as $image)
-          <img src="{{ asset('./upload/' . $image->name) }}" alt="" class="image rounded-circle" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
-        @endforeach
+        <img src="{{ asset(Auth::user()->image) }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; margin-right: 15px;">
       </li>
       <li class="p-3">
         <p>{{ auth()->user()->name }}</p>
@@ -44,14 +41,8 @@
         <a href="{{ route('login') }}">Login</a>
       </li>
       @endguest
-
     </ul>
   </nav>
-  <div>
-
-  </div>
-
-
   @yield('content')
 </body>
 
