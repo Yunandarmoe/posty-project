@@ -3,15 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Requests\StorePostRequest;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
+use App\Http\Requests\LoginStoreRequest;
 
 class LoginController extends Controller
-{
-
-    //protected $redirectTo = '/home';
-    
+{  
     public function __construct()
     {
         $this->middleware(['guest']);
@@ -22,19 +17,10 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function store(Request $request)
-    {
-        // Will return only validated data
-       
-        //$request->validated();
-
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        
+    public function store(LoginStoreRequest $request)
+    {           
         auth()->attempt($request->only('email', 'password'));       
         
-        return redirect()->route('home'); 
+        return view('home'); 
     }
 }
