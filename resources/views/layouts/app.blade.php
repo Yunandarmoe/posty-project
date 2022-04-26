@@ -20,7 +20,7 @@
     <ul class="flex justify-between items-center">
       @auth
       <li>
-        <img src="{{ asset(Auth::user()->image) }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; margin-right: 15px;">
+        <img src="{{ asset(Auth::user()->image) }}" alt="" style="height: 50px; width: 50px; border-radius: 50%;">
       </li>
       <li class="p-3">
         <p>{{ auth()->user()->name }}</p>

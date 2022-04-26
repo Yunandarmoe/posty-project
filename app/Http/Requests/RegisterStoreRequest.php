@@ -27,7 +27,7 @@ class RegisterStoreRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'password' => 'required|confirmed',
-            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

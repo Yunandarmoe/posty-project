@@ -41,7 +41,12 @@
       </div>
 
       <div class="input-group mb-4">
-        <input type="file" name="image" multiple class="form-control" aria-label="Upload">
+        <input type="file" name="image" class="form-control">
+        @error('image')
+          <div class="text-red-500 mt-2 text-sm">
+            {{ ($message) }}
+          <div>
+        @enderror
       </div>
 
       <div>
