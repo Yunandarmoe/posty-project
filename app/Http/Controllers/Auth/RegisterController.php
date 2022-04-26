@@ -27,7 +27,7 @@ class RegisterController extends Controller
             $imagename = time() . '_' . $imageuploaded->getClientOriginalName();
             $imagepath = public_path('/upload/image/');
             $imageuploaded->move($imagepath, $imagename);
-       }
+        }
        
         User::create([
             'name' => $request->name,
