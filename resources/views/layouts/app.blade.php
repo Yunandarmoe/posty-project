@@ -26,7 +26,7 @@
         <p>{{ auth()->user()->name }}</p>
       </li>
       <li class="p-3">
-        <form action="{{ route('logout') }}" method="post">
+        <form action="{{ route('logout') }}" method="get">
           @csrf
           <button type="submit">Logout</button>
         </form>
@@ -42,6 +42,7 @@
       </li>
       @endguest
     </ul>
+    
   </nav>
   @yield('content')
 </body>

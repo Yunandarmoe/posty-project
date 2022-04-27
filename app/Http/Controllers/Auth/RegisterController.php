@@ -29,14 +29,12 @@ class RegisterController extends Controller
             $imagepath = $request->image->storeAs($filepath, $imagename);
         }
 
-
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'image' => 'images/' . $imagename,
         ]);
-
 
         return redirect()->route('login');
     }
