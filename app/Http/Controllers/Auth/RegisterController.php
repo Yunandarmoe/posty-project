@@ -22,19 +22,22 @@ class RegisterController extends Controller
 
     public function store(RegisterStoreRequest $request)
     {
-        if(request()->has('image')){
-            $imageuploaded = request()->file('image');
+        if ($request->hasFile('image')) {
+            $imageuploaded = $request->file('image');
             $imagename = time() . '_' . $imageuploaded->getClientOriginalName();
-            $imagepath = public_path('/upload/image/');
-            $imageuploaded->move($imagepath, $imagename);
+            $filepath = 'public/images';
+            $imagepath = $request->image->storeAs($filepath, $imagename);
         }
-       
+
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'image' => '/upload/image/' . $imagename,
+            'image' => '/' . $imagename,
         ]);
+
+
         return redirect()->route('login');
     }
 }
