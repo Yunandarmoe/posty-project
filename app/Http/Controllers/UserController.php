@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -22,11 +23,20 @@ class UserController extends Controller
 
     public function store(UserStoreRequest $request)
     {     
+        if ($request->hasFile('image')) {
+            $imageuploaded = $request->file('image');
+            $imagename = time() . '_' . $imageuploaded->getClientOriginalName();
+            $filepath = 'public/images';
+            $imagepath = $request->image->storeAs($filepath, $imagename);
+        }
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
+            'image' => '/images/' . $imagename,
         ]);
+
         return redirect('user');
     }
 
@@ -47,6 +57,21 @@ class UserController extends Controller
     public function update(User $user, UserUpdateRequest $request)
     {
         $user->update($request->all());
+
+        if ($request->hasFile('image')) {
+            $imageuploaded = $request->file('image');
+            $imagename = time() . '_' . $imageuploaded->getClientOriginalName();
+            $filepath = 'public/images';
+            $imagepath = $request->image->storeAs($filepath, $imagename);
+            $input['image'] = "/images/" . "$imagename";
+        }
+        
+        $user->update($input);
+
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+
         return redirect('user');
     }
 

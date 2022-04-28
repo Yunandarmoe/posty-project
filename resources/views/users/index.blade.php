@@ -10,8 +10,9 @@
       <thead>
         <tr>
           <th class="w-40">No</th>
-          <th class="w-2/5">Name</th>
+          <th class="w-2/5">Name</th>         
           <th class="w-2/5">Email</th>
+          <th class="w-2/5">Image</th>
         </tr>
       </thead>
       <tbody>
@@ -20,6 +21,7 @@
           <th scope="row">{{ $user->id }}</th>
           <td>{{ $user->name }}</td>
           <td>{{ $user->email }}</td>
+          <td><img src="{{ Storage::url($user->image) }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;"></td>
           <td><a href="{{ route('users.show', $user->id) }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">Show</a></td>
           <td><a href="{{ route('users.edit', $user->id) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Edit</a></td>
           <td>

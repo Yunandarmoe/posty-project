@@ -11,7 +11,6 @@ class RegisterController extends Controller
 {
     public function __construct()
     {
-
         $this->middleware(['guest']);
     }
 
@@ -33,7 +32,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'image' => 'images/' . $imagename,
+            'image' => '/images/' . $imagename,
         ]);
 
         return redirect()->route('login');

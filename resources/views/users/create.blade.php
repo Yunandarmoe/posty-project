@@ -5,7 +5,7 @@
   <div class="w-2/6 p-5 mt-8 bg-blue-300 rounded-md">
     <div class="bg-light p-4 rounded">
       <div class="container mt-4">
-        <form action="{{ route('users.store') }}" method="post" class="mt-5">
+        <form action="{{ route('users.store') }}" enctype="multipart/form-data" method="post" class="mt-5">
           @csrf
           <div class="mb-4">
             <label for="name" class="sr-only">Name</label>
@@ -36,7 +36,14 @@
               <div>
             @enderror
           </div>
-
+          <div class="input-group mb-4">
+            <input type="file" name="image" class="form-control">
+            @error('image')
+              <div class="text-red-500 mt-2 text-sm">
+                {{ ($message) }}
+              <div>
+            @enderror
+          </div>
           <div>
             <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-2 rounded front-medium w-1/3">Create</button>
             <a href="{{ route('users.index') }}" class="bg-blue-400 hover:bg-blue-500 text-white px-2 py-2 rounded front-medium w-1/4 text-center float-right">Back</a>
