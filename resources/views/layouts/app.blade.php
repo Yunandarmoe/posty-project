@@ -20,7 +20,11 @@
     <ul class="flex justify-between items-center">
       @auth
       <li>
-        <img src="{{ Storage::url(Auth::user()->image) }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
+        @if(Auth::user()->image)
+          <img src="{{ Auth::user()->getImage() }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
+        @else
+          <img src="{{ asset('storage/images') . '/' . 'avatar.jpg' }}" alt="No photo" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
+        @endif
       </li>
       <li class="p-3">
         <p>{{ auth()->user()->name }}</p>
@@ -42,7 +46,6 @@
       </li>
       @endguest
     </ul>
-    
   </nav>
   @yield('content')
 </body>
