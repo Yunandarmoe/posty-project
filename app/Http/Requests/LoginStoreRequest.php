@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+
 use Illuminate\Foundation\Http\FormRequest;
+
 
 class LoginStoreRequest extends FormRequest
 {
@@ -24,8 +26,8 @@ class LoginStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|max:255',
-            'password' => 'required',
+            'email' => ['required','email','max:255'],
+            'password' => ['required'],
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+
 use Illuminate\Foundation\Http\FormRequest;
 
 
@@ -25,10 +26,10 @@ class RegisterStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed',
-            'image' => 'nullable|mimes:jpeg,png,jpg|max:2048'
+            'name' => ['required','max:255'],
+            'email' => ['required','email','max:255','unique:users'],
+            'password' => ['required','confirmed'],
+            'image' => ['nullable','mimes:jpeg,png,jpg','max:2048']
         ];
     }
 

@@ -19,7 +19,7 @@
 
           <div class="mb-4">
             <label for="email" class="sr-only">Email</label>
-            <input type="email" name="email" id="email" placeholder="Email" class="bg-gray-100 border-2 w-full p-3 rounded-md @error('email') border-red-500 @enderror">
+            <input type="text" name="email" id="email" placeholder="Email" class="bg-gray-100 border-2 w-full p-3 rounded-md @error('email') border-red-500 @enderror">
             @error('email')
               <div class="text-red-500 mt-2 text-sm">
                 {{ ($message) }}

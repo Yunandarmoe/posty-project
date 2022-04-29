@@ -3,18 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterStoreRequest;
 use App\Models\User;
-use App\Models\Gallery;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterStoreRequest;
+use App\Models\Gallery;
 
 class RegisterController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['guest']);
-    }
-
     public function index()
     {
         $galleries = Gallery::all();
@@ -34,20 +29,20 @@ class RegisterController extends Controller
         }
         
         if($request->hasFile('image')) {
-            User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),   
                 'image' => "images/" . $imagename,     
             ]);
         } else {
-            User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]); 
         }
-
-        return redirect()->route('login');
+        auth()->login($user);
+        return redirect('/');
     }
 }
