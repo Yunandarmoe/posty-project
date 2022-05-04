@@ -21,7 +21,7 @@ class RegisterController extends Controller
         if ($request->hasFile('image')) {
             $imageuploaded = $request->file('image');
             $imagename = time() .'_'. $imageuploaded->getClientOriginalName();
-            $imagepath = $request->image->storeAs('images', $imagename);
+            $imagepath = $request->image->storeAs('public/images', $imagename);
 
             $gallery = new Gallery();
             $gallery->image = $imagename;

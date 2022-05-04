@@ -27,7 +27,7 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
             $imageuploaded = $request->file('image');
             $imagename = time() .'_'. $imageuploaded->getClientOriginalName();
-            $imagepath = $request->image->storeAs('images', $imagename);
+            $imagepath = $request->image->storeAs('public/images', $imagename);
 
             $gallery = new Gallery();
             $gallery->image = $imagename;
@@ -72,7 +72,7 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
             $imageuploaded = $request->file('image');
             $imagename = time() .'_'. $imageuploaded->getClientOriginalName();
-            $imagepath = $request->image->storeAs('images', $imagename);
+            $imagepath = $request->image->storeAs('public/images', $imagename);
             $input['image'] = "/images/" . "$imagename";
             
             $gallery = new Gallery();
@@ -86,7 +86,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect('users');
+        return redirect()->route('users.show', $id);
     }
 
     public function destroy(User $id)
