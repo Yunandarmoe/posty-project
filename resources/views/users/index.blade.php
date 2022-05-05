@@ -3,8 +3,15 @@
 @section('content')
 <div class="flex justify-center">
   <div class="w-3/4 p-5 mt-8 bg-blue-300 rounded-md">
+    @if(Session::has('import_success'))
+      <p class="bg-green-300 p-3 rounded-md">           
+        {{ Session::get('import_success') }}
+      <p>
+    @endif
     <div class="bg-light p-4 rounded">
       <a href="{{ route('users.create') }}" class="bg-blue-500 text-white px-2 py-2 rounded front-medium float-right">Add new user</a>
+      <a href="{{ route('users.import') }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Import</a>
+      <a href="{{ route('users.export') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Export</a>
     </div>
     <table class="mt-6">
       <thead>
@@ -23,9 +30,9 @@
           <td>{{ $user->email }}</td>
           <td>
             @if($user->image)
-              <img src="{{ Storage::url($user->image) }}" alt="Profile Image" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
+            <img src="{{ Storage::url($user->image) }}" alt="Profile Image" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
             @else
-              <img src="{{ asset('storage/images') . '/' . 'avatar.jpg' }}" alt="Avatar Image" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
+            <img src="{{ asset('storage/images') . '/' . 'avatar.jpg' }}" alt="Avatar Image" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
             @endif
           </td>
           <td><a href="{{ route('users.show', $user->id) }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">Show</a></td>
@@ -42,7 +49,6 @@
       </tbody>
     </table>
   </div>
-</div>
 </div>
 
 @endsection

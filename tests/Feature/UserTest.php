@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 
@@ -16,7 +15,7 @@ class UserTest extends TestCase
    * @return void
    */
 
-  use RefreshDatabase, WithFaker;
+  use RefreshDatabase;
 
   /** @test */
   public function login_screen_can_be_rendered()
@@ -27,7 +26,7 @@ class UserTest extends TestCase
   }
 
   /** @test */
-  public function it_can_not_authenticate_with_invalid_name_email()
+  public function it_can_not_authenticate_with_invalid_name_and_email()
   {
     $user = User::factory()->create();
 

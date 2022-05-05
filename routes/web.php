@@ -28,8 +28,13 @@ Route::group(['prefix' => 'users'], function () {
   Route::delete('/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
+Route::get('/import', [UserController::class, 'importview'])->name('users.import');
+Route::post('/import', [UserController::class, 'import'])->name('users.import');
+Route::get('/export',[UserController::class,'export'])->name('users.export');
+
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
   Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
   Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 });
+
