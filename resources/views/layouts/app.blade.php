@@ -7,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Posty Project</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body class="bg-white">
@@ -21,9 +25,9 @@
       @auth
       <li>
         @if(Auth::user()->image)
-          <img src="{{ Auth::user()->getImage() }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
+        <img src="{{ Auth::user()->getImage() }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
         @else
-          <img src="{{ asset('storage/images') . '/' . 'avatar.jpg' }}" alt="No photo" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
+        <img src="{{ asset('storage/images') . '/' . 'avatar.jpg' }}" alt="No photo" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid #fff;">
         @endif
       </li>
       <li class="p-3">

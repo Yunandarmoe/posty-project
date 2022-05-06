@@ -13,5 +13,5 @@ class CsvExport implements FromCollection
     public function collection()
     {
         return User::all();
-    }
+    }b
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerificationController;
@@ -37,4 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
   Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 });
+
+Route::get('/chart', [ChartController::class, 'index'])->name('chart.index');
+
 

@@ -10,13 +10,13 @@
     @endif
     <div class="bg-light p-4 rounded">
       <a href="{{ route('users.create') }}" class="bg-blue-500 text-white px-2 py-2 rounded front-medium float-right">Add new user</a>
+      <a href="{{ route('chart.index') }}" class="text-white px-2 py-2 rounded front-medium float-right mr-5" style="margin-right:5px; background-color: #31b7b7;">Go to chart</a>
       <a href="{{ route('users.import') }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Import</a>
       <a href="{{ route('users.export') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Export</a>
     </div>
     <table class="mt-6">
       <thead>
         <tr>
-          <th class="w-40">No</th>
           <th class="w-2/5">Name</th>
           <th class="w-2/5">Email</th>
           <th class="w-2/5">Image</th>
@@ -25,7 +25,6 @@
       <tbody>
         @foreach($users as $user)
         <tr class="mb-3">
-          <th scope="row">{{ $user->id }}</th>
           <td>{{ $user->name }}</td>
           <td>{{ $user->email }}</td>
           <td>
@@ -48,6 +47,9 @@
         @endforeach
       </tbody>
     </table>
+    <div class="mt-5">
+      {{ $users->links('pagination::tailwind') }}
+    </div>
   </div>
 </div>
 

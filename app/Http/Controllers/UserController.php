@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = User::latest()->paginate(5);
         return view('users.index', compact('users'));
     }
 
@@ -107,7 +107,7 @@ class UserController extends Controller
     public function import(Request $request)
     {
         $this->validate($request, [
-            'file' => 'required|mimes:csv,txt',
+            'file' => 'required|mimes:csv',
         ], [
             'file.required' => 'Please choose a file',
         ]);
